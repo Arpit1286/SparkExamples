@@ -39,6 +39,14 @@ val result = input.map(x => x*x)  // using map transformation and applying a fun
 val newLine = sc.parallelize(List("hello world", "hi"))
 val words = lines.flatMap(line => line.split(" "))  // calling split on each line, will return RDD which will contain ("hello", "world", "hi")
 
+// aggregate example
+val Input = sc.parallelize(List(1,2,3,4,5))
+
+val sumCount = Input.aggregate((0,0))(
+  (acc,value)=>(acc._1 + value, acc._2 + 1),  // (sum the values from the RDD, add the positions of added values)
+  (acc1, acc2) => (acc1._1 + acc2._1, acc1._2 + acc2._2)) // (combine the partitionsfor first place, combine the paritions for second place)
+val avg = sumCount._1 / sumCount._2.toDouble
+
 
 
 
