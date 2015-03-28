@@ -1,6 +1,7 @@
 // Examples illustrated in Learning Spark book, all of these are run in spark's scala shell in standalone mode
 
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.SparkContext._
 
 val conf = new SparkConf().setAppName("LS-ShellExamples")
 val sc = new SparkContext(conf)
