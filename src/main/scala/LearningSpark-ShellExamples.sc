@@ -47,6 +47,18 @@ val sumCount = Input.aggregate((0,0))(
   (acc1, acc2) => (acc1._1 + acc2._1, acc1._2 + acc2._2)) // (combine the partitionsfor first place, combine the paritions for second place)
 val avg = sumCount._1 / sumCount._2.toDouble
 
+// ############### //
+//     Chapter4    //
+// ############### //
+
+val newStringRDD = sc.parallelize(List("Biggus Dickus", "Ostentatious Basterd", "Any sumBitch"))
+val keyValueRDD = newStringRDD.map(x => (x(0), x))  // creates a key value RDD with first word of the string as key and string a value
+
+// the are many inbuilt functions which operate on key value RDDs
+// example word count in spark
+val wordCountInput = sc.textFile("/path/to/textFile")
+val word = wordCountInput.flatMap(x => x.split(" "))
+val wordCount = words.map(x => (x, 1).reduceByKey((x, y) => x + y)
 
 
 
