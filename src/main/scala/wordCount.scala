@@ -16,3 +16,4 @@ object WordCount {
     wordCount.saveAsTextFile("/path/to/outputTextFile")
   }
 }
+
